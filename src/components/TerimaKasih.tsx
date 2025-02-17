@@ -1,7 +1,7 @@
 "use client";
 
 import { FormValues } from "@/app/page";
-import { MapIcon, MapPinIcon } from "@heroicons/react/16/solid";
+import { MapIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/16/solid";
 import {
   Accordion,
   AccordionItem,
@@ -26,7 +26,7 @@ export default function TerimaKasih({ form }: Props) {
         <p>Dengan ini,</p>
 
         <div className="leading-5">
-          <p className="font-bold uppercase font-courgette">
+          <p className="font-bold uppercase font-courgette text-[#fdb924]">
             {form.watch("pihakKeluarga") === "maznan"
               ? "Maznan Bin Shair"
               : "Hamran Bin Daud"}
@@ -34,7 +34,7 @@ export default function TerimaKasih({ form }: Props) {
 
           <p className="uppercase">&</p>
 
-          <p className="font-bold uppercase font-courgette">
+          <p className="font-bold uppercase font-courgette text-[#fdb924]">
             {" "}
             {form.watch("pihakKeluarga") === "maznan"
               ? "Mariamah Binti Sharif"
@@ -50,7 +50,8 @@ export default function TerimaKasih({ form }: Props) {
 
         <div className="space-y-1 py-4">
           <p className="uppercase underline font-bold text-xl text-[#fdb924]">
-            {form.watch("namaKeluarga")} serta keluarga
+            {form.watch("namaKeluarga")} serta keluarga - {form.watch("pax")}{" "}
+            pax(s)
           </p>
           <p className="text-xs opacity-50">
             Kami telah menerima pengesahan{" "}
@@ -64,13 +65,13 @@ export default function TerimaKasih({ form }: Props) {
         <p className="">untuk hadir ke majlis perkahwinan Anakanda kami</p>
 
         <div className="leading-5">
-          <p className="font-bold uppercase font-courgette">
+          <p className="font-bold uppercase font-courgette text-[#fdb924]">
             Rohaizad Bin Maznan
           </p>
 
           <p className="uppercase">&</p>
 
-          <p className="font-bold uppercase font-courgette">
+          <p className="font-bold uppercase font-courgette text-[#fdb924]">
             Nur Husna Binti Hamran
           </p>
         </div>
@@ -80,21 +81,9 @@ export default function TerimaKasih({ form }: Props) {
 
       <div className="space-y-2 border border-white rounded-lg p-4">
         <p className="font-bold">Aturcara majlis</p>
-        <p>Isnin</p>
+        <p className="text-[#fdb924]">ISNIN</p>
         <p>12 Mei 2025 | 14 Zulkaedah 1446H</p>
         <p>12 petang - 4 petang</p>
-      </div>
-
-      <Divider />
-
-      <div className="space-y-2 border border-white rounded-lg p-4">
-        <p className="font-bold">Hubungi</p>
-        <p>
-          Roslinda:{" "}
-          <Link color="foreground" href="tel:+60197667850" underline="always">
-            +60197667850
-          </Link>
-        </p>
       </div>
 
       <Divider />
@@ -117,6 +106,26 @@ export default function TerimaKasih({ form }: Props) {
             <br /> 80150 Johor Bahru, Johor
           </Link>
         </div>
+      </div>
+
+      <Divider />
+
+      <div className="space-y-2 border border-white rounded-lg p-4">
+        <div className="flex items-center justify-center  space-x-1">
+          <PhoneIcon className="w-4 h-4" />
+          <p className="font-bold">Hubungi</p>
+        </div>
+        <p>
+          Roslinda:{" "}
+          <Link
+            color="foreground"
+            className="text-[#fdb924]"
+            href="tel:+60197667850"
+            underline="always"
+          >
+            +60197667850
+          </Link>
+        </p>
       </div>
 
       <div className="flex justify-center space-x-3">
@@ -163,7 +172,7 @@ export default function TerimaKasih({ form }: Props) {
             aria-label="Accordion 1"
             title="Jika saya sudah menghantar pengesahan kehadiran keluarga saya,
             kemudian saya menjemput ahli keluarga lain
-            (Ketua/kenalan/sepupu/saudara/adik/abang/dll keluarga) menghadiri
+            (Ketua / kenalan / sepupu / saudara / adik / abang / dll keluarga) menghadiri
             majlis tanpa mengisi kehadiran. Apakah tidak dibenarkan?"
             classNames={{
               title: "text-sm",
