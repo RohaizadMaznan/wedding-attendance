@@ -3,7 +3,7 @@
 import {
   MapIcon,
   MapPinIcon,
-  PaperAirplaneIcon,
+  // PaperAirplaneIcon,
 } from "@heroicons/react/16/solid";
 import {
   Button,
