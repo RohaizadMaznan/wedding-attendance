@@ -1,15 +1,15 @@
 "use client";
 
+import { FormValues } from "@/app/page";
 import { Button, Input } from "@heroui/react";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
 
 type Step2Props = {
-  form: any;
-  setSteps: any;
+  form: UseFormReturn<FormValues, any, undefined>;
 };
 
-export default function Step2({ form, setSteps }: Step2Props) {
+export default function Step2({ form }: Step2Props) {
   return (
     <div className="space-y-4 p-8">
       <p className="text-lg font-bold">

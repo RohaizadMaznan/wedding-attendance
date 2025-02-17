@@ -1,15 +1,20 @@
 "use client";
 
-import { listPihakKeluarga } from "@/app/page";
+import { FormValues } from "@/app/page";
 import { Select, SelectItem } from "@heroui/react";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
 
 type Step1Props = {
-  form: any;
-  setSteps: any;
-  setIsLoading: any;
+  form: UseFormReturn<FormValues, any, undefined>;
+  setSteps: React.Dispatch<React.SetStateAction<number>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+const listPihakKeluarga = [
+  { key: "maznan", label: "Pihak Lelaki (Maznan Bin Shair)" },
+  { key: "hamran", label: "Pihak Perempuan (Hamran Bin Daud)" },
+];
 
 export default function Step1({ form, setSteps, setIsLoading }: Step1Props) {
   return (

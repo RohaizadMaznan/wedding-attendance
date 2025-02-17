@@ -22,12 +22,7 @@ const attendanceSchema = z.object({
     .min(1, "Sekurang-kurangnya satu(1) ahli")
     .max(10, "Tidak boleh melebihi 10 bilangan ahli"),
 });
-type FormValues = z.infer<typeof attendanceSchema>;
-
-export const listPihakKeluarga = [
-  { key: "maznan", label: "Pihak Lelaki (Maznan Bin Shair)" },
-  { key: "hamran", label: "Pihak Perempuan (Hamran Bin Daud)" },
-];
+export type FormValues = z.infer<typeof attendanceSchema>;
 
 export default function Home() {
   const [steps, setSteps] = React.useState(0);
@@ -69,7 +64,7 @@ export default function Home() {
         {steps === 0 && (
           <Step1 form={form} setSteps={setSteps} setIsLoading={setIsLoading} />
         )}
-        {steps === 1 && <Step2 form={form} setSteps={setSteps} />}
+        {steps === 1 && <Step2 form={form} />}
         {steps === 2 && <TerimaKasih form={form} />}
       </form>
     </div>

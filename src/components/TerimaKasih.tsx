@@ -1,5 +1,6 @@
 "use client";
 
+import { FormValues } from "@/app/page";
 import { MapIcon, MapPinIcon } from "@heroicons/react/16/solid";
 import {
   Accordion,
@@ -10,9 +11,10 @@ import {
   Tooltip,
 } from "@heroui/react";
 import React from "react";
+import { UseFormReturn } from "react-hook-form";
 
 type Props = {
-  form: any;
+  form: UseFormReturn<FormValues, any, undefined>;
 };
 
 export default function TerimaKasih({ form }: Props) {
