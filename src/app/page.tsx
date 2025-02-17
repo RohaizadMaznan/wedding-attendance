@@ -232,7 +232,7 @@ export default function Home() {
           <p className="">
             dengan tulis ikhlas dan kesyukuran menjemput
             <br />
-            Dato' / Datin / Tuan / Puan / Encik / Cik
+            Dato&apos; / Datin / Tuan / Puan / Encik / Cik
           </p>
 
           <p className="uppercase underline font-bold text-xl py-4 text-[#fdb924]">
@@ -302,7 +302,7 @@ export default function Home() {
             </Tooltip>
           </div>
 
-          <div>
+          {/* <div>
             <Tooltip
               placement="bottom"
               content="Google Maps"
@@ -321,7 +321,7 @@ export default function Home() {
                 <PaperAirplaneIcon className="w-4 h-4" />
               </Button>
             </Tooltip>
-          </div>
+          </div> */}
         </div>
 
         <p className="text-sm opacity-50">
