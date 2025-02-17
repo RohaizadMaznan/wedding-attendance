@@ -15,7 +15,9 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        "plus-jakarta": ["var(--font-plus-jakarta-sans)"],
+        "plus-jakarta": ["Plus Jakarta Sans", "sans-serif"],
+        satisfy: ["Satisfy", "cursive"],
+        courgette: ["Courgette", "cursive"],
       },
     },
   },
