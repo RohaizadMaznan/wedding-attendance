@@ -50,9 +50,11 @@ export default function TerimaKasih({ form }: Props) {
 
         <div className="space-y-1 py-4">
           <p className="uppercase underline font-bold text-xl text-[#fdb924]">
-            {form.watch("namaKeluarga")} serta keluarga - {form.watch("pax")}{" "}
-            pax(s)
+            {form.watch("namaKeluarga")}{" "}
+            {form.watch("pax") > 1 &&
+              `serta ${form.watch("pax") === 2 ? "pasangan" : "keluarga"}`}
           </p>
+
           <p className="text-xs opacity-50">
             Kami telah menerima pengesahan{" "}
             <span className="font-bold text-[#fdb924] underline">
@@ -66,13 +68,17 @@ export default function TerimaKasih({ form }: Props) {
 
         <div className="leading-5">
           <p className="font-bold uppercase font-courgette text-[#fdb924]">
-            Rohaizad Bin Maznan
+            {form.watch("namaKeluarga") === "maznan"
+              ? "Rohaizad Bin Maznan"
+              : "Nur Husna Binti Hamran"}
           </p>
 
           <p className="uppercase">&</p>
 
           <p className="font-bold uppercase font-courgette text-[#fdb924]">
-            Nur Husna Binti Hamran
+            {form.watch("namaKeluarga") === "maznan"
+              ? "Nur Husna Binti Hamran"
+              : "Rohaizad Bin Maznan"}
           </p>
         </div>
       </div>
@@ -115,17 +121,46 @@ export default function TerimaKasih({ form }: Props) {
           <PhoneIcon className="w-4 h-4" />
           <p className="font-bold">Hubungi</p>
         </div>
-        <p>
-          Roslinda:{" "}
-          <Link
-            color="foreground"
-            className="text-[#fdb924]"
-            href="tel:+60197667850"
-            underline="always"
-          >
-            +60197667850
-          </Link>
-        </p>
+        {form.watch("namaKeluarga") === "maznan" ? (
+          <>
+            <p>
+              Roslinda:{" "}
+              <Link
+                color="foreground"
+                className="text-[#fdb924]"
+                href="tel:+60197667850"
+                underline="always"
+              >
+                +60197667850
+              </Link>
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              Husna:{" "}
+              <Link
+                color="foreground"
+                className="text-[#fdb924]"
+                href="tel:+60138874045"
+                underline="always"
+              >
+                +60138874045
+              </Link>
+            </p>
+            <p>
+              Marosiah (Mak):{" "}
+              <Link
+                color="foreground"
+                className="text-[#fdb924]"
+                href="tel:+601139498229"
+                underline="always"
+              >
+                +601139498229
+              </Link>
+            </p>
+          </>
+        )}
       </div>
 
       <div className="flex justify-center space-x-3">
@@ -230,7 +265,7 @@ export default function TerimaKasih({ form }: Props) {
           <AccordionItem
             key="5"
             aria-label="Accordion 1"
-            title="Bagi tetamu yang tidak dapat memberikan bukti. Adakah para tetamu tersebut perlu pulang?"
+            title="Bagi tetamu yang tidak dapat memberikan bukti. Adakah para tetamu tersebut tidak dibenarkan masuk?"
             classNames={{
               title: "text-sm",
               content: "text-sm text-left",

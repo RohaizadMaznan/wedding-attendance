@@ -65,6 +65,20 @@ export default function Step2({ form }: Step2Props) {
           )}
         />
 
+        <Controller
+          name="nombor"
+          control={form.control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Nombor telefon"
+              placeholder="0129876543"
+              errorMessage={form.formState.errors.pax?.message}
+              isInvalid={!!form.formState.errors.pax}
+            />
+          )}
+        />
+
         {/* <Controller
           name="email"
           control={form.control}

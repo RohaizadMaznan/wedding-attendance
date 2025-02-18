@@ -14,6 +14,9 @@ const attendanceSchema = z.object({
   pihakKeluarga: z
     .string({ required_error: "Sila pilih satu pihak" })
     .min(1, "Sila pilih satu pihak"),
+  nombor: z
+    .string({ required_error: "Sila masukkan nombor telefon anda" })
+    .min(1, "Sila masukkan nombor telefon anda"),
   namaKeluarga: z
     .string({ required_error: "Sila masukkan nama keluarga anda" })
     .min(3, "Sila masukkan nama keluarga anda"),
