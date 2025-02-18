@@ -41,8 +41,6 @@ export default function Home() {
   });
 
   const onSubmit = form.handleSubmit((data) => {
-    // console.log(data);
-
     mutation.mutateAsync(data);
   });
 
@@ -62,7 +60,7 @@ export default function Home() {
 
       return response.json();
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("Gagal menghantar. Sila cuba lagi.");
     },
     onSuccess: () => {

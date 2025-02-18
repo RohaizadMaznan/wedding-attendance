@@ -14,7 +14,6 @@ type Step1Props = {
 
 export default function Step1({ form, setSteps, setIsLoading }: Step1Props) {
   const { data, isLoading } = useAttendance();
-  console.log(data);
 
   const listPihakKeluarga = [
     {

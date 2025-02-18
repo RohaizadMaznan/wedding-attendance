@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/mongodb";
 import type { NextRequest } from "next/server";
 import Attendance from "@/lib/models/Attendance";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     await connectDB();
     const attendances = await Attendance.find({});
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 }
 
 // Optional: Handle other methods or return a default response
-export async function OPTIONS(request: Request) {
+export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
     headers: {
