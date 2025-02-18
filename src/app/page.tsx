@@ -5,6 +5,7 @@ import Step2 from "@/components/Step2";
 import TerimaKasih from "@/components/TerimaKasih";
 import { Spinner } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -40,11 +41,34 @@ export default function Home() {
   });
 
   const onSubmit = form.handleSubmit((data) => {
-    console.log(data);
+    // console.log(data);
 
-    toast("Kami telah menerima pengesahan daripada anda. Jumpa di majlis!");
+    mutation.mutateAsync(data);
+  });
 
-    setSteps(2);
+  const mutation = useMutation({
+    mutationFn: async (data: FormValues) => {
+      const response = await fetch("/api/attendances", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit attendance");
+      }
+
+      return response.json();
+    },
+    onError: (error: any) => {
+      toast.error("Gagal menghantar. Sila cuba lagi.");
+    },
+    onSuccess: () => {
+      toast("Kami telah menerima pengesahan daripada anda. Jumpa di majlis!");
+      setSteps(2);
+    },
   });
 
   React.useEffect(() => {
@@ -67,7 +91,7 @@ export default function Home() {
         {steps === 0 && (
           <Step1 form={form} setSteps={setSteps} setIsLoading={setIsLoading} />
         )}
-        {steps === 1 && <Step2 form={form} />}
+        {steps === 1 && <Step2 form={form} mutation={mutation} />}
         {steps === 2 && <TerimaKasih form={form} />}
       </form>
     </div>

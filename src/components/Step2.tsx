@@ -1,15 +1,20 @@
 "use client";
 
 import { FormValues } from "@/app/page";
+import { useAttendance } from "@/lib/query/attendance";
 import { Button, Input } from "@heroui/react";
+import { UseMutationResult } from "@tanstack/react-query";
 import React from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
 
 type Step2Props = {
   form: UseFormReturn<FormValues, any, undefined>;
+  mutation: UseMutationResult<any, any, FormValues, unknown>;
 };
 
-export default function Step2({ form }: Step2Props) {
+export default function Step2({ form, mutation }: Step2Props) {
+  const { data } = useAttendance();
+
   return (
     <div className="space-y-4 p-8">
       <p className="text-lg font-bold">
@@ -98,7 +103,15 @@ export default function Step2({ form }: Step2Props) {
         className="w-full lg:w-fit"
         variant="bordered"
         type="submit"
-        isDisabled={!form.formState.isValid}
+        isDisabled={
+          !form.formState.isValid ||
+          mutation.isPending ||
+          (data!.paxByCategory?.maznan >= 100 &&
+            form.watch("pihakKeluarga") === "maznan") ||
+          (data!.paxByCategory?.hamran >= 100 &&
+            form.watch("pihakKeluarga") === "hamran")
+        }
+        isLoading={mutation.isPending}
       >
         Hantar
       </Button>

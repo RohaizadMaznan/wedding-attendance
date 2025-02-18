@@ -1,6 +1,7 @@
 "use client";
 
 import { FormValues } from "@/app/page";
+import { useAttendance } from "@/lib/query/attendance";
 import { Select, SelectItem } from "@heroui/react";
 import React from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
@@ -11,12 +12,25 @@ type Step1Props = {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const listPihakKeluarga = [
-  { key: "maznan", label: "Pihak Lelaki (Maznan Bin Shair)" },
-  { key: "hamran", label: "Pihak Perempuan (Hamran Bin Daud)" },
-];
-
 export default function Step1({ form, setSteps, setIsLoading }: Step1Props) {
+  const { data, isLoading } = useAttendance();
+  console.log(data);
+
+  const listPihakKeluarga = [
+    {
+      key: "maznan",
+      label: `${
+        !isLoading && data!.paxByCategory.maznan >= 100 ? "(FULL) " : ""
+      }Pihak Lelaki (Maznan Bin Shair)`,
+    },
+    {
+      key: "hamran",
+      label: `${
+        !isLoading && data!.paxByCategory.hamran >= 100 ? "(FULL) " : ""
+      }Pihak Perempuan (Hamran Bin Daud)`,
+    },
+  ];
+
   return (
     <div className="space-y-8 bg-[url('/wallpaper/VIN001.png')] p-8 bg-cover bg-center bg-no-repeat h-screen text-background">
       <div className="absolute top-[33%] left-0 w-full flex flex-col items-center place-items-center justify-items-center justify-center">
@@ -55,6 +69,11 @@ export default function Step1({ form, setSteps, setIsLoading }: Step1Props) {
                   setSteps(1);
                 }, 500);
               }}
+              disabledKeys={[
+                !isLoading && data!.paxByCategory.maznan >= 100 ? "maznan" : "",
+                !isLoading && data!.paxByCategory.hamran >= 100 ? "hamran" : "",
+              ]}
+              isLoading={isLoading}
             >
               {listPihakKeluarga.map((item) => (
                 <SelectItem key={item.key}>{item.label}</SelectItem>

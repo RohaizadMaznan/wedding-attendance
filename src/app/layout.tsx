@@ -31,10 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="mx-auto my-auto flex flex-col justify-center h-full">
-          {children}
-        </div>
-        <Providers />
+        <Providers>
+          <div className="mx-auto my-auto flex flex-col justify-center h-full">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

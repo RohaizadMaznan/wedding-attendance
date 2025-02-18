@@ -2,11 +2,19 @@
 
 import { Toaster } from "sonner";
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-export default function Providers() {
+interface Props {
+  children: React.ReactNode;
+}
+
+const queryClient = new QueryClient();
+
+export default function Providers({ children }: Props) {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <Toaster />
-    </div>
+      {children}
+    </QueryClientProvider>
   );
 }
